@@ -1,0 +1,33 @@
+{% extends "_layouts/cp" %}
+
+{% set title = "Coerce" | t %}
+
+{% set showStatusMenu = true %}
+
+{% block sidebar %}
+    {{ parent() }}
+{% endblock %}
+{% import "_includes/forms" as forms %}
+{% set content %}
+
+<form method="post" enctype="multipart/form-data" action="" accept-charset="UTF-8" data-saveshortcut="1">
+    <input type="hidden" name="action" value="commentImporter/import">
+    {{ getCsrfInput() }}
+    <input type="hidden" name="action" value="plugins/savePluginSettings">
+    <input type="hidden" name="pluginClass" value="coerce">
+    <label for="invalidWords">Invalid words</label>
+    <textarea name="invalidWords" id="invalidWords" onkeyup="textAreaAdjust(this)" style="width: 100%; overflow:hidden">
+    	{{craft.coerce.getCoerceSettings()}}
+    </textarea>
+
+    <div class="buttons">
+        <input type="submit" class="btn submit" value="{{ 'Submit' | t }}">
+    </div>
+</form>
+<script>
+function textAreaAdjust(o) {
+    o.style.height = "1px";
+    o.style.height = (25+o.scrollHeight)+"px";
+}
+</script>
+{% endset %}

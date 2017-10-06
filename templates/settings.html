@@ -1,0 +1,12 @@
+{% import '_includes/forms' as forms %}
+
+<h2>Coerce Settings</h2>
+
+<div class="coerce-container">
+{{ forms.textArea({
+	label: "Invalid Strings"|t,
+	id: 'invalidStrings',
+	name: 'invalidWords',
+	value: craft.coerce.getCoerceSettings(),
+}) }}
+</div>
